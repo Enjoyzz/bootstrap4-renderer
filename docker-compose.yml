@@ -1,0 +1,29 @@
+version: '3.7'
+
+networks:
+  backend:
+
+services:
+
+  nginx:
+    image: nginx:1.19-alpine
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./docker/nginx/templates:/etc/nginx/templates
+      - ./:/opt/project
+    depends_on:
+      - php
+    networks:
+      - backend
+
+  php:
+    build:
+      context: ./docker/php/8.0
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/opt/project
+    ports:
+      - "9006:9000"
+    networks:
+      - backend
