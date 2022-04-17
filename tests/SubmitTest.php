@@ -14,6 +14,6 @@ class SubmitTest extends TestCase
     {
         $el = new Submit('foo');
         $render = Bootstrap4Renderer::createTypeRender($el);
-        $this->assertSame(['btn-primary', 'btn'], $render->getElement()->getClassesList());
+        $this->assertSame(['btn', 'btn-primary'], $render->getElement()->getClassesList());
     }
 }

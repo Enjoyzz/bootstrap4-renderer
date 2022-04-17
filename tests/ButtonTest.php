@@ -13,6 +13,6 @@ class ButtonTest extends TestCase
     {
         $el = new \Enjoys\Forms\Elements\Button('foo');
         $render = new Button($el);
-        $this->assertSame([ 'btn'], $render->getElement()->getClassesList());
+        $this->assertSame([ 'btn', 'btn-link'], $render->getElement()->getClassesList());
     }
 }

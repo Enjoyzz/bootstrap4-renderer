@@ -20,24 +20,22 @@ class Bootstrap4Renderer implements RendererInterface
     use RendererTrait;
 
     private const _MAP_ = [
-        Button::class => [
-            Elements\Button::class,
-
-            Elements\Reset::class,
-            Elements\Image::class
-        ],
+        Button::class => Elements\Button::class,
         Submit::class => Elements\Submit::class,
+        Image::class => Elements\Image::class,
+        Reset::class => Elements\Reset::class,
+        File::class => Elements\File::class,
         Radio::class => [
             Elements\Radio::class,
             Elements\Checkbox::class
         ],
         Select::class => Elements\Select::class,
         Group::class => Elements\Group::class,
+        Header::class => Elements\Header::class,
         Html::class => [
             Elements\Html::class,
             Elements\Header::class
         ],
-        Textarea::class => Elements\Textarea::class
     ];
 
     public function output(): string
@@ -66,21 +64,25 @@ class Bootstrap4Renderer implements RendererInterface
     {
         $html = [];
         foreach ($this->getForm()->getElements() as $element) {
-
             if (method_exists($element, 'getDescription') && !empty($element->getDescription())) {
-                $element->setAttrs(AttributeFactory::createFromArray([
-                    'id' => $element->getAttr('id')->getValueString() . 'Help',
-                    'class' => 'form-text'
-                ]), Form::ATTRIBUTES_DESC);
-                $element->setAttrs(AttributeFactory::createFromArray([
-                    'aria-describedby' => $element->getAttr('id', Form::ATTRIBUTES_DESC)->getValueString()
-                ]));
+                $element->setAttrs(
+                    AttributeFactory::createFromArray([
+                        'id' => $element->getAttr('id')->getValueString() . 'Help',
+                        'class' => 'form-text'
+                    ]),
+                    Form::ATTRIBUTES_DESC
+                );
+                $element->setAttrs(
+                    AttributeFactory::createFromArray([
+                        'aria-describedby' => $element->getAttr('id', Form::ATTRIBUTES_DESC)->getValueString()
+                    ])
+                );
             }
 
 
             $element->addClass('form-label', Form::ATTRIBUTES_LABEL);
 
-            $html[] =  self::createTypeRender($element)->render();
+            $html[] = self::createTypeRender($element)->render();
         }
         return implode("\n", $html);
     }

@@ -8,12 +8,12 @@ namespace Enjoys\Forms\Renderer\Bootstrap4;
 
 use Enjoys\Forms\Element;
 
-class Submit extends \Enjoys\Forms\Renderer\Html\TypesRender\Button
+class Reset extends \Enjoys\Forms\Renderer\Html\TypesRender\Button
 {
 
     public function __construct(Element $element)
     {
-        $element->addClass('btn btn-primary');
+        $element->addClass('btn btn-secondary');
         parent::__construct($element);
     }
 }

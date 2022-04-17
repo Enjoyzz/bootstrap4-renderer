@@ -8,14 +8,8 @@ namespace Enjoys\Forms\Renderer\Bootstrap4;
 
 use Enjoys\Forms\Element;
 
-class Button extends \Enjoys\Forms\Renderer\Html\TypesRender\Button
+class Image extends \Enjoys\Forms\Renderer\Html\TypesRender\Input
 {
-
-    public function __construct(Element $element)
-    {
-        $element->addClass('btn btn-link');
-        parent::__construct($element);
-    }
 
     public function render(): string
     {
