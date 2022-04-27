@@ -2,9 +2,7 @@
 
 declare(strict_types=1);
 
-
 namespace Enjoys\Forms\Renderer\Bootstrap4;
-
 
 use Enjoys\Forms\Element;
 use Enjoys\Forms\Renderer\Html\HtmlRenderer;
@@ -15,7 +13,7 @@ class Group extends Input
     {
 //        $element->addClass('form-group');
 //        $return = sprintf("<div%s>", $element->getAttributesString());
-        $return='';
+        $return = '';
         /** @var \Enjoys\Forms\Elements\Group $element */
         foreach ($element->getElements() as $data) {
             $return .= "<div class='col'>";
@@ -36,5 +34,4 @@ class Group extends Input
             $this->validationRender(),
         );
     }
-
 }

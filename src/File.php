@@ -2,9 +2,7 @@
 
 declare(strict_types=1);
 
-
 namespace Enjoys\Forms\Renderer\Bootstrap4;
-
 
 use Enjoys\Forms\Attribute;
 use Enjoys\Forms\AttributeFactory;
@@ -14,7 +12,6 @@ use Enjoys\Forms\Interfaces\AttributeInterface;
 
 class File extends \Enjoys\Forms\Renderer\Html\TypesRender\Input
 {
-
     private AttributeInterface $placeholder;
 
     public function __construct(Element $element)
@@ -62,8 +59,6 @@ class File extends \Enjoys\Forms\Renderer\Html\TypesRender\Input
             $this->placeHolderRender(),
             $this->validationRender(),
             $this->descriptionRender(),
-
         );
     }
-
 }

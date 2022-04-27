@@ -11,14 +11,11 @@ use Enjoys\Forms\Form;
 use Enjoys\Forms\Helper;
 use Enjoys\Forms\Interfaces\RendererInterface;
 use Enjoys\Forms\Interfaces\TypeRenderInterface;
-use Enjoys\Forms\Traits\RendererTrait;
+use Enjoys\Forms\Renderer\AbstractRenderer;
 use Enjoys\Forms\Elements;
 
-class Bootstrap4Renderer implements RendererInterface
+class Bootstrap4Renderer extends AbstractRenderer
 {
-
-    use RendererTrait;
-
     private const _MAP_ = [
         Button::class => Elements\Button::class,
         Submit::class => Elements\Submit::class,
@@ -42,7 +39,7 @@ class Bootstrap4Renderer implements RendererInterface
     {
         return sprintf(
             "<form%s>\n%s\n%s\n</form>",
-            $this->form->getAttributesString(),
+            $this->getForm()->getAttributesString(),
             $this->rendererHiddenElements(),
             $this->rendererElements()
         );
