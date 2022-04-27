@@ -6,13 +6,12 @@ namespace Enjoys\Forms\Renderer\Bootstrap4;
 
 use Enjoys\Forms\AttributeFactory;
 use Enjoys\Forms\Element;
+use Enjoys\Forms\Elements;
 use Enjoys\Forms\Elements\Hidden;
 use Enjoys\Forms\Form;
 use Enjoys\Forms\Helper;
-use Enjoys\Forms\Interfaces\RendererInterface;
 use Enjoys\Forms\Interfaces\TypeRenderInterface;
 use Enjoys\Forms\Renderer\AbstractRenderer;
-use Enjoys\Forms\Elements;
 
 class Bootstrap4Renderer extends AbstractRenderer
 {

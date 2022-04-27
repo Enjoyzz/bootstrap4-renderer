@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Enjoys\Forms\Renderer\Bootstrap4;
 
 use Enjoys\Forms\Element;
-use Enjoys\Forms\Renderer\Html\HtmlRenderer;
 
 class Group extends Input
 {

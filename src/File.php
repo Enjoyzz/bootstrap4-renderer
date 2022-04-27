@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Enjoys\Forms\Renderer\Bootstrap4;
 
-use Enjoys\Forms\Attribute;
 use Enjoys\Forms\AttributeFactory;
 use Enjoys\Forms\Element;
 use Enjoys\Forms\Form;
