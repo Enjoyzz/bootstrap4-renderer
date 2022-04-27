@@ -26,7 +26,6 @@ new Session();
 
 class Bootstrap4RendererTest extends _TestCase
 {
-
     use Reflection;
 
     public function dataForCreateTypeRenderer()
@@ -137,7 +136,7 @@ class Bootstrap4RendererTest extends _TestCase
 HTML
             ,
             $renderer->output()
-        // $this->stringOneLine($renderer->output())
+            // $this->stringOneLine($renderer->output())
         );
     }
 
@@ -251,7 +250,7 @@ HTML
 HTML
             ,
             $renderer->output()
-        // $this->stringOneLine($renderer->output())
+            // $this->stringOneLine($renderer->output())
         );
     }
 

@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+
 namespace Tests\Enjoys\Forms\Renderer\Bootstrap4;
 
 use Enjoys\Forms\Elements\Submit;
