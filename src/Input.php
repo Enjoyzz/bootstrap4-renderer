@@ -6,11 +6,15 @@ namespace Enjoys\Forms\Renderer\Bootstrap4;
 
 use Enjoys\Forms\Element;
 use Enjoys\Forms\Form;
+use Enjoys\Traits\Options;
 
 class Input extends \Enjoys\Forms\Renderer\Html\TypesRender\Input
 {
-    public function __construct(Element $element)
+    use Options;
+
+    public function __construct(Element $element, array $options = [])
     {
+        $this->setOptions($options);
         $element->addClass('form-control');
 
         if (method_exists($element, 'isRuleError') && $element->isRuleError()) {

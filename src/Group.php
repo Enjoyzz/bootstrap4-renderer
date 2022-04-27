@@ -16,7 +16,7 @@ class Group extends Input
         /** @var \Enjoys\Forms\Elements\Group $element */
         foreach ($element->getElements() as $data) {
             $return .= "<div class='col'>";
-            $return .= Bootstrap4Renderer::createTypeRender($data)->render();
+            $return .= Bootstrap4Renderer::createTypeRender($data, $this->getOptions())->render();
             $return .= '</div>';
         }
 //        $return .= '</div>';

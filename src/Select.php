@@ -6,11 +6,15 @@ namespace Enjoys\Forms\Renderer\Bootstrap4;
 
 use Enjoys\Forms\Element;
 use Enjoys\Forms\Elements\Optgroup;
+use Enjoys\Traits\Options;
 
 class Select extends Input
 {
-    public function __construct(Element $element)
+    use Options;
+
+    public function __construct(Element $element, array $options = [])
     {
+        $this->setOptions($options);
         $element->addClass('form-select');
         parent::__construct($element);
     }
