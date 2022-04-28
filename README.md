@@ -28,28 +28,30 @@ $renderer->output();
 
 ## Options
 
-```custom-switch``` - more https://getbootstrap.com/docs/4.6/components/forms/#switches
+### ```switch``` setting for the  checkbox elements the custom switch control
+see  https://getbootstrap.com/docs/4.6/components/forms/#switches
 
-set for all checkbox the custom switch
+setting for all the  checkbox elements  the custom switch
 ```php
 $renderer->setOptions([
-    'custom-switch' => true 
+    'switch' => true 
 ]);
 ```
 
-set for one element the custom switch
+setting for one element the custom switch
 ```php
 $renderer->setOptions([
-    'custom-switch' => 'element_name' // 
+    'switch' => 'element_name'
 ]);
 ```
 
-set for definitions elements the custom switch
+setting a custom switch for the listed elements
 ```php
 $renderer->setOptions([
-    'custom-switch' => [
+    'switch' => [
         'element_name', 
-        'more_element', //...
+        'more_element', 
+        //...
     ] 
 ]);
 ```
