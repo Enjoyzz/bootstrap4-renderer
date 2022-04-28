@@ -21,16 +21,15 @@ class Checkbox extends Input
         /** @var Element&Fillable $data */
         foreach ($element->getElements() as $data) {
 
+            $data->addClass('custom-control-input');
+            $data->addClass('custom-control-label', Form::ATTRIBUTES_LABEL);
+            $element->addClass('custom-control custom-checkbox', Form::ATTRIBUTES_FILLABLE_BASE);
+
             if ($this->getOption('switch') === true
                 || in_array(rtrim($element->getName(), '[]'), (array)$this->getOption('switch', []), true)
             ) {
-                $data->addClass('custom-control-input');
-                $data->addClass('custom-control-label', Form::ATTRIBUTES_LABEL);
-                $element->addClass('custom-control custom-switch', Form::ATTRIBUTES_FILLABLE_BASE);
-            } else {
-                $data->addClass('form-check-input');
-                $data->addClass('form-check-label', Form::ATTRIBUTES_LABEL);
-                $element->addClass('form-check', Form::ATTRIBUTES_FILLABLE_BASE);
+                $element->removeClass('custom-checkbox', Form::ATTRIBUTES_FILLABLE_BASE);
+                $element->addClass('custom-switch', Form::ATTRIBUTES_FILLABLE_BASE);
             }
 
             if (empty($data->getLabel())) {

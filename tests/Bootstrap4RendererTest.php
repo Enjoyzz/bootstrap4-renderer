@@ -59,7 +59,7 @@ class Bootstrap4RendererTest extends _TestCase
         $this->assertEquals($form, $renderer->getForm());
 
         $this->assertSame(
-        // $this->stringOneLine(
+         $this->stringOneLine(
             <<<HTML
 <form enctype="multipart/form-data" method="POST">
 <input type="hidden" name="_token_csrf" value="$_token_csrf">
@@ -98,14 +98,14 @@ class Bootstrap4RendererTest extends _TestCase
 </select>
 
 </div>
-<div class='form-group'><label class="form-label" for="cb_checkbox1">Выбор1&nbsp;<sup>*</sup></label>
-<div class="form-check"><input type="checkbox" id="cb_1" value="1" class="form-check-input" name="checkbox1[]"><label class="form-check-label" for="cb_1">1</label></div>
-<div class="form-check"><input type="checkbox" id="cb_2" value="2" class="form-check-input" name="checkbox1[]"><label class="form-check-label" for="cb_2">2</label></div>
-<div class="form-check"><input type="checkbox" id="cb_3" value="3" class="form-check-input" name="checkbox1[]"><label class="form-check-label" for="cb_3">3</label></div>
-<div class="form-check"><input type="checkbox" id="cb_4" value="4" class="form-check-input" name="checkbox1[]"><label class="form-check-label" for="cb_4">4</label></div>
+<div class='form-group'><label class="form-label" for="checkbox1">Выбор1&nbsp;<sup>*</sup></label>
+<div class="custom-control custom-checkbox"><input type="checkbox" id="checkbox1_1" value="1" class="custom-control-input" name="checkbox1[]"><label class="custom-control-label" for="checkbox1_1">1</label></div>
+<div class="custom-control custom-checkbox"><input type="checkbox" id="checkbox1_2" value="2" class="custom-control-input" name="checkbox1[]"><label class="custom-control-label" for="checkbox1_2">2</label></div>
+<div class="custom-control custom-checkbox"><input type="checkbox" id="checkbox1_3" value="3" class="custom-control-input" name="checkbox1[]"><label class="custom-control-label" for="checkbox1_3">3</label></div>
+<div class="custom-control custom-checkbox"><input type="checkbox" id="checkbox1_4" value="4" class="custom-control-input" name="checkbox1[]"><label class="custom-control-label" for="checkbox1_4">4</label></div>
 
 
-<small id="cb_checkbox1Help" class="form-text">Выбор1 Description</small></div>
+<small id="checkbox1Help" class="form-text">Выбор1 Description</small></div>
 <input type="image" id="image_name" name="image_name" src="https://avatars.mds.yandex.net/get-entity_search/5735732/551767088/S122x122Fit_2x">
 <div class="h4">Header 3</div>
 <div style="margin: 2em 0"><i>HTML embed</i></div>
@@ -134,9 +134,9 @@ class Bootstrap4RendererTest extends _TestCase
 <input type="reset" id="reset1" name="reset1" value="Reset button" class="btn btn-secondary">
 </form>
 HTML
-            ,
-            $renderer->output()
-            // $this->stringOneLine($renderer->output())
+        ) ,
+//            $renderer->output()
+         $this->stringOneLine($renderer->output())
         );
     }
 
@@ -169,12 +169,11 @@ HTML
         $renderer->setForm($form);
 
 
-
         $this->assertEquals($form, $renderer->getForm());
 
         $this->assertSame(
-        // $this->stringOneLine(
-            <<<HTML
+            $this->stringOneLine(
+                <<<HTML
 <form enctype="multipart/form-data" method="POST">
 <input type="hidden" name="_token_submit" value="$_token_submit">
 <input type="hidden" name="_token_csrf" value="$_token_csrf">
@@ -212,14 +211,14 @@ HTML
 </select>
 
 </div>
-<div class='form-group'><label class="form-label" for="cb_checkbox1">Выбор1&nbsp;<sup>*</sup></label>
-<div class="form-check"><input type="checkbox" id="cb_1" value="1" class="form-check-input is-invalid" name="checkbox1[]"><label class="form-check-label" for="cb_1">1</label></div>
-<div class="form-check"><input type="checkbox" id="cb_2" value="2" class="form-check-input is-invalid" name="checkbox1[]"><label class="form-check-label" for="cb_2">2</label></div>
-<div class="form-check"><input type="checkbox" id="cb_3" value="3" class="form-check-input is-invalid" name="checkbox1[]"><label class="form-check-label" for="cb_3">3</label></div>
-<div class="form-check"><input type="checkbox" id="cb_4" value="4" class="form-check-input is-invalid" name="checkbox1[]"><label class="form-check-label" for="cb_4">4</label></div>
+<div class='form-group'><label class="form-label" for="checkbox1">Выбор1&nbsp;<sup>*</sup></label>
+<div class="custom-control custom-checkbox"><input type="checkbox" id="checkbox1_1" value="1" class="custom-control-input is-invalid" name="checkbox1[]"><label class="custom-control-label" for="checkbox1_1">1</label></div>
+<div class="custom-control custom-checkbox"><input type="checkbox" id="checkbox1_2" value="2" class="custom-control-input is-invalid" name="checkbox1[]"><label class="custom-control-label" for="checkbox1_2">2</label></div>
+<div class="custom-control custom-checkbox"><input type="checkbox" id="checkbox1_3" value="3" class="custom-control-input is-invalid" name="checkbox1[]"><label class="custom-control-label" for="checkbox1_3">3</label></div>
+<div class="custom-control custom-checkbox"><input type="checkbox" id="checkbox1_4" value="4" class="custom-control-input is-invalid" name="checkbox1[]"><label class="custom-control-label" for="checkbox1_4">4</label></div>
 
 <div class="invalid-feedback d-block">Обязательно для заполнения, или выбора</div>
-<small id="cb_checkbox1Help" class="form-text">Выбор1 Description</small></div>
+<small id="checkbox1Help" class="form-text">Выбор1 Description</small></div>
 <input type="image" id="image_name" name="image_name" src="https://avatars.mds.yandex.net/get-entity_search/5735732/551767088/S122x122Fit_2x">
 <div class="h4">Header 3</div>
 <div style="margin: 2em 0"><i>HTML embed</i></div>
@@ -248,9 +247,9 @@ HTML
 <input type="reset" id="reset1" name="reset1" value="Reset button" class="btn btn-secondary">
 </form>
 HTML
-            ,
-            $renderer->output()
-            // $this->stringOneLine($renderer->output())
+            ),
+//            $renderer->output()
+            $this->stringOneLine($renderer->output())
         );
     }
 

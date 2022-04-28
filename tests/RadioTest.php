@@ -24,9 +24,9 @@ class RadioTest extends _TestCase
         $render = Bootstrap4Renderer::createTypeRender($el);
         $this->assertSame($this->stringOneLine(<<<HTML
 <div class='form-group'>
-<label for="rb_test">Test Label</label>
-<div class="form-check"><input type="radio" value="0" test id="new" class="form-check-input" name="test"><label class="form-check-label" for="new">no</label></div>
-<div class="form-check"><input type="radio" id="rb_1" value="1" class="form-check-input" name="test"><label class="form-check-label" for="rb_1">yes</label></div>
+<label for="test">Test Label</label>
+<div class="custom-control custom-radio"><input type="radio" value="0" test id="new" class="custom-control-input" name="test"><label class="custom-control-label" for="new">no</label></div>
+<div class="custom-control custom-radio"><input type="radio" id="test_1" value="1" class="custom-control-input" name="test"><label class="custom-control-label" for="test_1">yes</label></div>
 </div>
 HTML), $this->stringOneLine($render->render()));
     }
@@ -44,9 +44,9 @@ HTML), $this->stringOneLine($render->render()));
         $render = Bootstrap4Renderer::createTypeRender($el);
         $this->assertSame($this->stringOneLine(<<<HTML
 <div class='form-group'>
-<label for="rb_test">Test Label</label>
-<div class="form-check"><input type="radio" id="rb_no" value="no" class="form-check-input position-static" name="test"><label class="form-check-label" for="rb_no"></label></div>
-<div class="form-check"><input type="radio" id="rb_yes" value="yes" class="form-check-input" name="test"><label class="form-check-label" for="rb_yes">Yes</label></div>
+<label for="test">Test Label</label>
+<div class="custom-control custom-radio"><input type="radio" value="no" id="no" class="custom-control-input position-static" name="test"><label class="custom-control-label" for="no"></label></div>
+<div class="custom-control custom-radio"><input type="radio" value="yes" id="yes" class="custom-control-input" name="test"><label class="custom-control-label" for="yes">Yes</label></div>
 </div>
 HTML), $this->stringOneLine($render->render()));
     }

@@ -19,10 +19,10 @@ class Radio extends Input
     {
         $return = '';
         foreach ($element->getElements() as $data) {
-            $element->addClass('form-check', Form::ATTRIBUTES_FILLABLE_BASE);
+            $element->addClass('custom-control custom-radio', Form::ATTRIBUTES_FILLABLE_BASE);
 
-            $data->addClass('form-check-input');
-            $data->addClass('form-check-label', Form::ATTRIBUTES_LABEL);
+            $data->addClass('custom-control-input');
+            $data->addClass('custom-control-label', Form::ATTRIBUTES_LABEL);
 
 
             if (empty($data->getLabel())) {
