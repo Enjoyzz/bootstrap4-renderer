@@ -29,6 +29,7 @@ class Bootstrap4Renderer extends AbstractRenderer
         Select::class => Elements\Select::class,
         Group::class => Elements\Group::class,
         Header::class => Elements\Header::class,
+        Range::class => Elements\Range::class,
         Html::class => [
             Elements\Html::class,
             Elements\Header::class
