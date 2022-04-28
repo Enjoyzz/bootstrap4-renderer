@@ -24,10 +24,8 @@ class Bootstrap4Renderer extends AbstractRenderer
         Image::class => Elements\Image::class,
         Reset::class => Elements\Reset::class,
         File::class => Elements\File::class,
-        Radio::class => [
-            Elements\Radio::class,
-            Elements\Checkbox::class
-        ],
+        Radio::class => Elements\Radio::class,
+        Checkbox::class => Elements\Checkbox::class,
         Select::class => Elements\Select::class,
         Group::class => Elements\Group::class,
         Header::class => Elements\Header::class,

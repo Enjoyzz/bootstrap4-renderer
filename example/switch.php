@@ -12,21 +12,21 @@ require __DIR__ . '/../vendor/autoload.php';
 
 $form = new Form();
 
-$form->checkbox('active')
-    ->setPrefixId(uniqid('cb'))
-    ->fill([1 => 'Active (custom switch)']);
+$form->checkbox('active','switch enabled')
+    ->fill([1 => 'Active']);
+$form->checkbox('active2', 'switch not enabled')
+    ->fill([1 => 'Active']);
+$form->checkbox('many', 'switch enabled')
+    ->fill([1,2,3,4,5]);
+$form->checkbox('many2', 'switch not enabled')
+    ->fill([1,2,3,4,5]);
 
-$form->checkbox('active2')
-    ->setPrefixId(uniqid('cb'))
-    ->fill([1 => 'Active (standard)']);
 
 $renderer = new Bootstrap4Renderer($form);
+
 $renderer->setOptions([
-    'custom-switch' => 'active'
+    'switch' => ['active', 'many']
 ]);
-
-
-
 
 ?>
 
@@ -38,8 +38,5 @@ $renderer->setOptions([
 
 <?php
 echo sprintf('<div class="container-fluid">%s</div>', $renderer->output());
-
-
-
 
 

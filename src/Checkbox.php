@@ -9,7 +9,7 @@ use Enjoys\Forms\Form;
 use Enjoys\Forms\Interfaces\Fillable;
 use Enjoys\Forms\Interfaces\Ruleable;
 
-class Radio extends Input
+class Checkbox extends Input
 {
     /**
      * @param Element&Fillable&Ruleable $element
@@ -18,12 +18,20 @@ class Radio extends Input
     protected function bodyRender(Element $element): string
     {
         $return = '';
+        /** @var Element&Fillable $data */
         foreach ($element->getElements() as $data) {
-            $element->addClass('form-check', Form::ATTRIBUTES_FILLABLE_BASE);
 
-            $data->addClass('form-check-input');
-            $data->addClass('form-check-label', Form::ATTRIBUTES_LABEL);
-
+            if ($this->getOption('switch') === true
+                || in_array(rtrim($element->getName(), '[]'), (array)$this->getOption('switch', []), true)
+            ) {
+                $data->addClass('custom-control-input');
+                $data->addClass('custom-control-label', Form::ATTRIBUTES_LABEL);
+                $element->addClass('custom-control custom-switch', Form::ATTRIBUTES_FILLABLE_BASE);
+            } else {
+                $data->addClass('form-check-input');
+                $data->addClass('form-check-label', Form::ATTRIBUTES_LABEL);
+                $element->addClass('form-check', Form::ATTRIBUTES_FILLABLE_BASE);
+            }
 
             if (empty($data->getLabel())) {
                 $data->addClass('position-static');
