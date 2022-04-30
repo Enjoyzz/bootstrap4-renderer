@@ -53,8 +53,8 @@ class Bootstrap4RendererTest extends _TestCase
         $renderer = new Bootstrap4Renderer();
         $renderer->setForm($form);
 
-        $_token_csrf = $form->getElement(Form::_TOKEN_CSRF_)->getAttr('value')->getValueString();
-        $_token_submit = $form->getElement(Form::_TOKEN_SUBMIT_)->getAttr('value')->getValueString();
+        $_token_csrf = $form->getElement(Form::_TOKEN_CSRF_)->getAttribute('value')->getValueString();
+        $_token_submit = $form->getElement(Form::_TOKEN_SUBMIT_)->getAttribute('value')->getValueString();
 
         $this->assertEquals($form, $renderer->getForm());
 
@@ -157,10 +157,10 @@ HTML
         $rules = $this->getPrivateProperty(Elements\Csrf::class, 'rules');
         $rules->setValue($csrf, []);
 
-        $_token_csrf = $csrf->getAttr('value')->getValueString();
+        $_token_csrf = $csrf->getAttribute('value')->getValueString();
 
 
-        $_token_submit = $form->getElement(Form::_TOKEN_SUBMIT_)->getAttr('value')->getValueString();
+        $_token_submit = $form->getElement(Form::_TOKEN_SUBMIT_)->getAttribute('value')->getValueString();
 
         Validator::check($form->getElements());
 
@@ -314,7 +314,7 @@ HTML
         $form->file('file_name', 'File LAbel')->addRule(Rules::UPLOAD, params: ['required'])->setDescription(
             'File desc'
         );
-        $form->file('file_name2')->addAttr(AttributeFactory::create('placeholder', 'select file'));
+        $form->file('file_name2')->addAttribute(AttributeFactory::create('placeholder', 'select file'));
 
         $form->textarea('textares1', 'TEXTAREA')->setValue('default value')->setCols(10)->setRows(5);
 

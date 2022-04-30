@@ -66,7 +66,7 @@ $form->html('<div style="margin: 2em 0"><i>HTML embed</i></div>');
 $form->datalist('datalist_name', 'Datalist')->fill([1, 2, 3, 4, 5]);
 
 $form->file('file_name', 'File LAbel')->addRule(Rules::UPLOAD, params: ['required'])->setDescription('File desc');
-$form->file('file_name2')->addAttr(AttributeFactory::create('placeholder', 'select file'));
+$form->file('file_name2')->addAttribute(AttributeFactory::create('placeholder', 'select file'));
 
 $form->textarea('textares1', 'TEXTAREA')->setValue('default value')->setCols(10)->setRows(5);
 

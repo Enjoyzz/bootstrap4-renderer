@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\Enjoys\Forms\Renderer\Bootstrap4;
 
-use Enjoys\Forms\Elements\Checkbox;
 use Enjoys\Forms\Elements\Radio;
 use Enjoys\Forms\Renderer\Bootstrap4\Bootstrap4Renderer;
-use Enjoys\Forms\Renderer\Html\HtmlRenderer;
 
 class RadioTest extends _TestCase
 {
