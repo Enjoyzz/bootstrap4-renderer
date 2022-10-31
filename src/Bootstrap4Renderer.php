@@ -10,6 +10,7 @@ use Enjoys\Forms\Elements;
 use Enjoys\Forms\Elements\Hidden;
 use Enjoys\Forms\Form;
 use Enjoys\Forms\Helper;
+use Enjoys\Forms\Interfaces\ElementInterface;
 use Enjoys\Forms\Renderer\AbstractRenderer;
 use Enjoys\Forms\Renderer\Html\TypesRender\TypeRenderInterface;
 use Enjoys\Traits\Options;
@@ -52,7 +53,7 @@ class Bootstrap4Renderer extends AbstractRenderer
         );
     }
 
-    private function rendererHiddenElements(): string
+    public function rendererHiddenElements(): string
     {
         $html = [];
         foreach ($this->getForm()->getElements() as $element) {
@@ -64,31 +65,39 @@ class Bootstrap4Renderer extends AbstractRenderer
         return implode("\n", $html);
     }
 
-    private function rendererElements(): string
+    public function rendererElements(): string
     {
         $html = [];
         foreach ($this->getForm()->getElements() as $element) {
-            if (method_exists($element, 'getDescription') && !empty($element->getDescription())) {
-                $element->setAttributes(
-                    AttributeFactory::createFromArray([
-                        'id' => $element->getAttribute('id')->getValueString() . 'Help',
-                        'class' => 'form-text'
-                    ]),
-                    Form::ATTRIBUTES_DESC
-                );
-                $element->setAttributes(
-                    AttributeFactory::createFromArray([
-                        'aria-describedby' => $element->getAttribute('id', Form::ATTRIBUTES_DESC)->getValueString()
-                    ])
-                );
-            }
-
-
-            $element->addClass('form-label', Form::ATTRIBUTES_LABEL);
-
-            $html[] = self::createTypeRender($element, $this->getOptions())->render();
+            $html[] = $this->_rendererElement($element);
         }
         return implode("\n", $html);
+    }
+
+    public function rendererElement(string $elementName): string
+    {
+        $element = $this->getForm()->getElement($elementName);
+        return $this->_rendererElement($element);
+    }
+
+    private function _rendererElement(Element|ElementInterface $element): string
+    {
+        if (method_exists($element, 'getDescription') && !empty($element->getDescription())) {
+            $element->setAttributes(
+                AttributeFactory::createFromArray([
+                    'id' => $element->getAttribute('id')->getValueString() . 'Help',
+                    'class' => 'form-text'
+                ]),
+                Form::ATTRIBUTES_DESC
+            );
+            $element->setAttributes(
+                AttributeFactory::createFromArray([
+                    'aria-describedby' => $element->getAttribute('id', Form::ATTRIBUTES_DESC)->getValueString()
+                ])
+            );
+        }
+        $element->addClass('form-label', Form::ATTRIBUTES_LABEL);
+        return self::createTypeRender($element, $this->getOptions())->render();
     }
 
     public static function createTypeRender(Element $element, array $options = []): TypeRenderInterface
