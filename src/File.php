@@ -8,17 +8,14 @@ use Enjoys\Forms\AttributeFactory;
 use Enjoys\Forms\Element;
 use Enjoys\Forms\Form;
 use Enjoys\Forms\Interfaces\AttributeInterface;
-use Enjoys\Traits\Options;
 
 class File extends \Enjoys\Forms\Renderer\Html\TypesRender\Input
 {
-    use Options;
 
     private AttributeInterface $placeholder;
 
-    public function __construct(Element $element, array $options = [])
+    public function __construct(Element $element)
     {
-        $this->setOptions($options);
         $element->addClass('custom-file-input');
         $element->addClass('custom-file-label', 'placeholder');
 

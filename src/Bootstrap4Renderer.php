@@ -13,11 +13,9 @@ use Enjoys\Forms\Helper;
 use Enjoys\Forms\Interfaces\ElementInterface;
 use Enjoys\Forms\Renderer\AbstractRenderer;
 use Enjoys\Forms\Renderer\Html\TypesRender\TypeRenderInterface;
-use Enjoys\Traits\Options;
 
 class Bootstrap4Renderer extends AbstractRenderer
 {
-    use Options;
 
     private const _MAP_ = [
         Button::class => Elements\Button::class,
@@ -36,12 +34,6 @@ class Bootstrap4Renderer extends AbstractRenderer
             Elements\Header::class
         ],
     ];
-
-    public function __construct(Form $form = null, array $options = [])
-    {
-        $this->setOptions($options);
-        parent::__construct($form);
-    }
 
     public function output(): string
     {
@@ -97,15 +89,15 @@ class Bootstrap4Renderer extends AbstractRenderer
             );
         }
         $element->addClass('form-label', Form::ATTRIBUTES_LABEL);
-        return self::createTypeRender($element, $this->getOptions())->render();
+        return self::createTypeRender($element)->render();
     }
 
-    public static function createTypeRender(Element $element, array $options = []): TypeRenderInterface
+    public static function createTypeRender(Element $element): TypeRenderInterface
     {
         $typeRenderClass = Helper::arrayRecursiveSearchKeyMap(get_class($element), self::_MAP_)[0] ?? false;
         if ($typeRenderClass === false || !class_exists($typeRenderClass)) {
-            return new Input($element, $options);
+            return new Input($element);
         }
-        return new $typeRenderClass($element, $options);
+        return new $typeRenderClass($element);
     }
 }
