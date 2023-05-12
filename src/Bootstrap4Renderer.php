@@ -35,6 +35,8 @@ class Bootstrap4Renderer extends AbstractRenderer
         ],
     ];
 
+    private array $options = [];
+
     public function output(): string
     {
         return sprintf(
@@ -89,7 +91,12 @@ class Bootstrap4Renderer extends AbstractRenderer
             );
         }
         $element->addClass('form-label', Form::ATTRIBUTES_LABEL);
-        return self::createTypeRender($element)->render();
+
+        $typeRenderer = self::createTypeRender($element);
+        if (method_exists($typeRenderer, 'setOptions')){
+            $typeRenderer->setOptions($this->options);
+        }
+        return $typeRenderer->render();
     }
 
     public static function createTypeRender(Element $element): TypeRenderInterface
@@ -99,5 +106,10 @@ class Bootstrap4Renderer extends AbstractRenderer
             return new Input($element);
         }
         return new $typeRenderClass($element);
+    }
+
+    public function setOptions(array $options): void
+    {
+        $this->options = $options;
     }
 }

@@ -11,6 +11,19 @@ use Enjoys\Forms\Interfaces\Ruleable;
 
 class Checkbox extends Input
 {
+
+    private array $options;
+
+    public function setOptions(array $options): void
+    {
+        $this->options = $options;
+    }
+
+    public function getOption(string $key, $default = null)
+    {
+        return array_key_exists($key, $this->options) ? $this->options[$key] : $default;
+    }
+
     /**
      * @param Element&Fillable&Ruleable $element
      * @return string

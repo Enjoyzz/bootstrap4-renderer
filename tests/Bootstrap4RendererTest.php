@@ -57,8 +57,8 @@ class Bootstrap4RendererTest extends _TestCase
         $this->assertEquals($form, $renderer->getForm());
 
         $this->assertSame(
-         $this->stringOneLine(
-            <<<HTML
+            $this->stringOneLine(
+                <<<HTML
 <form enctype="multipart/form-data" method="POST">
 <input type="hidden" name="_token_csrf" value="$_token_csrf">
 <input type="hidden" name="_token_submit" value="$_token_submit">
@@ -68,19 +68,19 @@ class Bootstrap4RendererTest extends _TestCase
 <input type="text" id="text_foo1" name="text_foo1" aria-describedby="text_foo1Help" class="form-control">
 
 <small id="text_foo1Help" class="form-text">Description</small></div>
-<label class="form-label" for="group_id">Group Label</label>
-<div class='form-row'><div class='col'><div class='form-group'><label for="text_foo2">Foo&nbsp;<sup>*</sup></label>
+<label class="form-label">Group Label</label>
+<div class="form-row"><div class="col"><div class='form-group'><label for="text_foo2">Foo&nbsp;<sup>*</sup></label>
 <input type="text" id="text_foo2" name="text_foo2" class="form-control">
 
-</div></div><div class='col'><div class='form-group'><label for="select_foo1">Bar</label>
+</div></div><div class="col"><div class='form-group'><label for="select_foo1">Bar</label>
 <select id="select_foo1" name="select_foo1" class="form-select form-control">
 <option value="0">1</option><option value="1">2</option><option value="2">3</option>
 </select>
 
-</div></div><div class='col'><div class='form-group'><label for="text_foo3">Foo3&nbsp;<sup>*</sup></label>
+</div></div><div class="col"><div class='form-group'><label for="text_foo3">Foo3&nbsp;<sup>*</sup></label>
 <input type="text" id="text_foo3" name="text_foo3" class="form-control">
 
-</div></div><div class='col'><button id="btn" name="btn" class="btn btn-link"><b>Custom</b> button</button></div>
+</div></div><div class="col"><button id="btn" name="btn" class="btn btn-link"><b>Custom</b> button</button></div>
 
 </div>
 <div class='form-group'><label class="form-label" for="select_foo2">Select City</label>
@@ -132,9 +132,9 @@ class Bootstrap4RendererTest extends _TestCase
 <input type="reset" id="reset1" name="reset1" value="Reset button" class="btn btn-secondary">
 </form>
 HTML
-        ) ,
+            ),
 //            $renderer->output()
-         $this->stringOneLine($renderer->output())
+            $this->stringOneLine($renderer->output())
         );
     }
 
@@ -143,11 +143,9 @@ HTML
     {
         $form = $this->getForm(
             'get',
-            new ServerRequestWrapper(
-                new ServerRequest(parsedBody: [
-                    Form::_TOKEN_SUBMIT_ => 'd751713988987e9331980363e24189ces'
-                ])
-            )
+            new ServerRequest(parsedBody: [
+                Form::_TOKEN_SUBMIT_ => 'd751713988987e9331980363e24189ces'
+            ])
         );
 
         /** @var \Enjoys\Forms\Elements\Csrf $csrf */
@@ -181,19 +179,19 @@ HTML
 <input type="text" id="text_foo1" name="text_foo1" aria-describedby="text_foo1Help" class="form-control is-invalid">
 <div class="invalid-feedback d-block">Обязательно для заполнения, или выбора</div>
 <small id="text_foo1Help" class="form-text">Description</small></div>
-<label class="form-label" for="group_id">Group Label</label>
-<div class='form-row'><div class='col'><div class='form-group'><label for="text_foo2">Foo&nbsp;<sup>*</sup></label>
+<label class="form-label">Group Label</label>
+<div class="form-row"><div class="col"><div class='form-group'><label for="text_foo2">Foo&nbsp;<sup>*</sup></label>
 <input type="text" id="text_foo2" name="text_foo2" class="form-control is-invalid">
 <div class="invalid-feedback d-block">Обязательно для заполнения, или выбора</div>
-</div></div><div class='col'><div class='form-group'><label for="select_foo1">Bar</label>
+</div></div><div class="col"><div class='form-group'><label for="select_foo1">Bar</label>
 <select id="select_foo1" name="select_foo1" class="form-select form-control">
 <option value="0">1</option><option value="1">2</option><option value="2">3</option>
 </select>
 
-</div></div><div class='col'><div class='form-group'><label for="text_foo3">Foo3&nbsp;<sup>*</sup></label>
+</div></div><div class="col"><div class='form-group'><label for="text_foo3">Foo3&nbsp;<sup>*</sup></label>
 <input type="text" id="text_foo3" name="text_foo3" class="form-control is-invalid">
 <div class="invalid-feedback d-block">Обязательно для заполнения, или выбора</div>
-</div></div><div class='col'><button id="btn" name="btn" class="btn btn-link"><b>Custom</b> button</button></div>
+</div></div><div class="col"><button id="btn" name="btn" class="btn btn-link"><b>Custom</b> button</button></div>
 
 </div>
 <div class='form-group'><label class="form-label" for="select_foo2">Select City</label>
@@ -259,12 +257,16 @@ HTML
         $form->header('Header 1');
 
         $form->text('text_foo1', 'Text Label Input')->setDescription('Description')->addRule(Rules::REQUIRED);
-        $form->group('Group Label', 'group_id')->add([
-            (new Text('text_foo2', 'Foo'))->addRule(Rules::REQUIRED),
-            (new Select('select_foo1', 'Bar'))->fill([1, 2, 3]),
-            (new Text('text_foo3', 'Foo3'))->addRule(Rules::REQUIRED),
-            new Elements\Button('btn', '<b>Custom</b> button')
-        ]);
+        $form->group('Group Label', 'group_id')
+            ->removeAttribute('id')
+            ->removeAttribute('name')
+            ->add([
+                (new Text('text_foo2', 'Foo'))->addRule(Rules::REQUIRED),
+                (new Select('select_foo1', 'Bar'))->fill([1, 2, 3]),
+                (new Text('text_foo3', 'Foo3'))->addRule(Rules::REQUIRED),
+                new Elements\Button('btn', '<b>Custom</b> button')
+            ]);
+
 
         $form->select('select_foo2', 'Select City')->fill([
             [
@@ -288,8 +290,7 @@ HTML
             ->setOptgroup('Украина', [
                 'Киев',
                 'Львов'
-            ])
-        ;
+            ]);
 
         $form->checkbox('checkbox1', 'Выбор1')->fill([
             1,
@@ -298,8 +299,7 @@ HTML
             4
         ], true)->setDescription('Выбор1 Description')
             ->addClass('text-muted')
-            ->addRule(Rules::REQUIRED)
-        ;
+            ->addRule(Rules::REQUIRED);
 
         $form->image('image_name', 'https://avatars.mds.yandex.net/get-entity_search/5735732/551767088/S122x122Fit_2x');
 
