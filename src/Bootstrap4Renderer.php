@@ -11,10 +11,11 @@ use Enjoys\Forms\Elements\Hidden;
 use Enjoys\Forms\Form;
 use Enjoys\Forms\Helper;
 use Enjoys\Forms\Interfaces\ElementInterface;
-use Enjoys\Forms\Renderer\AbstractRenderer;
+use Enjoys\Forms\Interfaces\RendererInterface;
 use Enjoys\Forms\Renderer\Html\TypesRender\TypeRenderInterface;
+use Enjoys\Forms\Renderer\Renderer;
 
-class Bootstrap4Renderer extends AbstractRenderer
+class Bootstrap4Renderer extends Renderer implements RendererInterface
 {
 
     private const _MAP_ = [
@@ -93,7 +94,7 @@ class Bootstrap4Renderer extends AbstractRenderer
         $element->addClass('form-label', Form::ATTRIBUTES_LABEL);
 
         $typeRenderer = self::createTypeRender($element);
-        if (method_exists($typeRenderer, 'setOptions')){
+        if (method_exists($typeRenderer, 'setOptions')) {
             $typeRenderer->setOptions($this->options);
         }
         return $typeRenderer->render();
