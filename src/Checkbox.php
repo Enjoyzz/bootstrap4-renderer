@@ -12,7 +12,7 @@ use Enjoys\Forms\Interfaces\Ruleable;
 class Checkbox extends Input
 {
 
-    private array $options;
+    private array $options = [];
 
     public function setOptions(array $options): void
     {
